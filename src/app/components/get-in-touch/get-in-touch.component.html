@@ -1,0 +1,55 @@
+<div class="container text-left">
+  <div class="row">
+    <div class="col-10">
+      <div class="jumbotron">
+        <h2>Angular 7 Reactive Forms with validation</h2>
+        <!-- form starts -->
+        <form name="form" [formGroup]="getInTouchForm">           <!-- step 4 -->
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <!-- step 5 - add formControlName for the inputs and do the same for all other inputs also -->
+
+            <input type="text" class="form-control" required formControlName="firstName" 
+            [ngClass]="{ 'is-invalid': getInTouchForm.get('firstName').touched && getInTouchForm.get('firstName').invalid }"/>
+            <div class="invalid-feedback">
+              <div>First Name is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" required formControlName="lastName" 
+            [ngClass]="{'is-invalid': getInTouchForm.get('lastName').touched && getInTouchForm.get('lastName').invalid}"/>
+            <div class="invalid-feedback">
+              <div>Last Name is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control"  formControlName="email" 
+              [ngClass]="{'is-invalid': getInTouchForm.get('email').touched && getInTouchForm.get('email').invalid}"
+                required />
+              <div *ngIf="getInTouchForm.get('email').touched && getInTouchForm.get('email').invalid" class="invalid-feedback">
+                <div *ngIf="getInTouchForm.get('email').errors.required">Email is required</div>
+                <div *ngIf="getInTouchForm.get('email').errors.email">Email seems to be not valid</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid': getInTouchForm.get('password').touched && getInTouchForm.get('password').invalid}"/>
+            <div *ngIf="getInTouchForm.get('password').touched && getInTouchForm.get('password').invalid" class="invalid-feedback">
+              <div *ngIf="getInTouchForm.get('password').errors.required">Password is required</div>
+              <div *ngIf="getInTouchForm.get('password').errors.minlength">Password must be at least 6 characters</div>
+            </div>
+
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
